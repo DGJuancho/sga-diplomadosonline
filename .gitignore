@@ -1,0 +1,72 @@
+# ░░ Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# ░░ Configuración de entorno y credenciales
+.env
+
+# ░░ Archivos de logs generales y errores de JVM
+*.log
+hs_err_pid*
+replay_pid*
+
+# ░░ Cachés y archivos temporales
+.cache/
+tmp/
+*.tmp
+*.bak
+*.swp
+
+# ░░ Dependencias y paquetes (PHP, Node.js, Python)
+vendor/
+node_modules/
+
+# ░░ Archivos de compilación y binarios
+*.class
+*.jar
+*.out
+*.o
+*.obj
+*.exe
+*.dll
+
+# ░░ Entorno virtual de Python
+.venv/
+
+# ░░ Cachés y archivos generados por Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ░░ Distribuciones y metadatos de Python
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# ░░ Configuración de entornos de desarrollo (IDE/editores)
+.idea/
+.vscode/
+.settings/
+workspace.xml
+*.iml
+
+# ░░ Archivos de prueba y cobertura
+coverage/
+*.spec.js
+*.test.js
+
+# ░░ Archivos relacionados a bases de datos y desarrollo web
+*.sql
+*.sqlite
+*.db
+.sass-cache
+
+# ░░ Cachés de herramientas de análisis PHP
+.phpcs-cache
+.php_cs.cache
+
+# ░░ Archivos comprimidos
+*.zip
+*.tar.gz
