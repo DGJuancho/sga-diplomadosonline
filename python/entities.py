@@ -36,7 +36,6 @@ class Person(ABC):
     @abstractmethod
     def get_role(self) -> str:
         """Método abstracto que obliga a las subclases a identificarse"""
-        pass  # noqa: PIE790
 
 
 class Professor(Person):
@@ -96,20 +95,29 @@ class Student(Person):
             return False
         return self._program.is_approved(self._grades_list)
 
-    def add_grade(self, grade: float):
-        if len(self._grades_list) >= 3:
-            print("El alumno posee las 3 notas requeridas")
-        else:
-            if not (0 <= grade <= 20):
-                print("Por favor ingresar una nota entre 0 y 20")
-            else:
-                self._grades_list.append(grade)
+    def add_grade(self, grade: float) -> bool:
+        """
+        Agrega una nota si no se ha alcanzado el límite de 3 y está en el rango [0, 20].
+        Retorna True si la nota fue añadida con éxito; False en caso contrario.
+        """
 
-    def remove_last_grade(self):
+        if len(self._grades_list) >= 3 or not (0 <= grade <= 20):
+            return False
+
+        self._grades_list.append(grade)
+        return True
+
+    def remove_last_grade(self) -> bool:
+        """
+        Remueve la última nota de la lista si existe.
+        Retorna True si se removió una nota; False si la lista estaba vacía.
+        """
+
         if not self._grades_list:
-            print("El alumno no tiene notas cargadas")
-        else:
-            self._grades_list.pop()
+            return False
+
+        self._grades_list.pop()
+        return True
 
 
 class AcademicProgram(ABC):
@@ -123,7 +131,6 @@ class AcademicProgram(ABC):
     @abstractmethod
     def is_approved(self, grades: list[float]) -> bool:
         """Método polimórfico para evaluar si el estudiante está aprobado, de acuerdo a la modalidad"""
-        pass  # noqa: PIE790
 
 
 class Course(AcademicProgram):
