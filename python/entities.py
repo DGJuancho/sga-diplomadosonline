@@ -53,6 +53,10 @@ class Professor(Person):
         self._specialty: str = specialty
         self._assigned_subject: str = assigned_subject
 
+    def get_role(self):
+        """Implementación del método abstracto de Person"""
+        return "Profesor"
+
     @property
     def specialty(self):
         """Retorna la especialidad del profesor"""
@@ -78,6 +82,10 @@ class Student(Person):
         super().__init__(national_id, full_name, email)
         self._program: AcademicProgram | None = program
         self._grades_list: list[float] = grades_list if grades_list is not None else []
+
+    def get_role(self):
+        """Implementación del método abstracto de Person"""
+        return "Alumno"
 
     @property
     def program(self) -> AcademicProgram | None:
