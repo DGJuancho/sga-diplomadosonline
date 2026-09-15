@@ -1,5 +1,5 @@
 """
-File_Manager es la capa de persistencia del SGA-Do, este módulo se encarga de traducir el texto plano a objetos en la memoria RAM y viceversa. Este módulo es responsables de:
+File_Manager es la capa de persistencia del SGA-DO, este módulo se encarga de traducir el texto plano a objetos en la memoria RAM y viceversa. Este módulo es responsables de:
 1. Leer los archivos: Validar si los archivos (alumnos.txt y profesores.txt) existen. Si no existen, los crea vacíos para evitar que el programa se rompa con un FileNotFoundError.
 2. Escribir los nuevos datos en los archivos: Recibir la lista de objetos y transformarlos en su formato de texto, delimitado por comas.
 """
@@ -138,23 +138,21 @@ class FileManager:
         """Convierte un objeto Profesor, al formato estandarizado de CSV."""
         return f"{professor.national_id}, {professor.full_name}, {professor.email}, {professor.specialty}, {professor.assigned_subject}\n"
 
+    def read_professors(self) -> list[Professor]:
+        """Lee profesores.txt y retorna la lista de Profesores."""
+        professors: list[Professor] = []
+        with open(self._professors_file, mode="r", encoding="utf-8") as file:
+            for line in file:
+                if line.strip():
+                    try:
+                        prof: Professor = self._parse_professor_line(line)
+                        professors.append(prof)
+                    except ValueError:
+                        continue  # Evita que el sistema se rompa por datos corruptos.
+        return professors
 
-def read_professors(self) -> list[Professor]:
-    """Lee profesores.txt y retorna la lista de Profesores."""
-    professors: list[Professor] = []
-    with open(self._professors_file, mode="r", encoding="utf-8") as file:
-        for line in file:
-            if line.strip():
-                try:
-                    prof = self.parse_professor_line(line)
-                    professors.append(prof)
-                except ValueError:
-                    continue  # Evita que el sistema se rompa por datos corruptos.
-    return professors
-
-
-def save_all_professors(self, professors: list[Professor]) -> None:
-    """Escribe o sobrescribe la información de los alumnos en el archivo."""
-    lines: list[str] = [self._format_professor_line(p) for p in professors]
-    with open(self._professors_file, mode="w", encoding="utf-8") as file:
-        file.writelines(lines)
+    def save_all_professors(self, professors: list[Professor]) -> None:
+        """Escribe o sobrescribe la información de los profesores en el archivo."""
+        lines: list[str] = [self._format_professor_line(p) for p in professors]
+        with open(self._professors_file, mode="w", encoding="utf-8") as file:
+            file.writelines(lines)
