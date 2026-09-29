@@ -97,6 +97,12 @@ class Student(Person):
         """Retorna la lista de notas del estudiante"""
         return self._grades_list
 
+    def calculate_average(self) -> float:
+        """Calcula y retorna el promedio actual de calificaciones del estudiante."""
+        if not self._grades_list:
+            return 0.0
+        return sum(self._grades_list) / len(self._grades_list)
+
     def is_approved(self) -> bool:
         """La función delega al programa académico el cálculo correspondiente"""
         if not self._program:
