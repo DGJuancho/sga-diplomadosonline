@@ -17,6 +17,7 @@ class FileManager:
         # Definimos las rutas usando objetos Path
         self._students_file = Path(data_dir) / "alumnos.txt"
         self._professors_file = Path(data_dir) / "profesores.txt"
+        self._certificates_file: Path = Path(data_dir) / "certificados_pendientes.txt"
 
         # Nos aseguramos de que existan desde el primer instante
         self._ensure_files_exist()
@@ -28,6 +29,9 @@ class FileManager:
 
         if not self._professors_file.exists():
             self._professors_file.touch()
+
+        if not self._certificates_file.exists():
+            self._certificates_file.touch()
 
     def _create_program_instance(self, program_name: str) -> AcademicProgram:
         """Método interno para instanciar el programa académico correspondiente."""
@@ -156,3 +160,33 @@ class FileManager:
         lines: list[str] = [self._format_professor_line(p) for p in professors]
         with open(self._professors_file, mode="w", encoding="utf-8") as file:
             file.writelines(lines)
+
+    def _format_certificate_report(self, graduates: list[Student]) -> str:
+        """Se genera el reporte de certificados pendientes"""
+
+        # 1. Encabezado
+        content = "=== REPORTE DE CERTIFICADOS PENDIENTES ===\n"
+        content += f"Total de graduandos en cola: {len(graduates)}\n\n"
+
+        # 2. bucle para agregar la información de cada estudiante
+        for i, student in enumerate(iterable=graduates, start=1):
+
+            avg = round(student.calculate_average(), 1)
+            program_name: str = (
+                student.program.program_name if student.program else "Sin Programa"
+            )
+            content += f"{i}. [{student.national_id}] {student.full_name}\n"
+            content += f"   - Programa: {program_name}\n"
+            content += f"   - Promedio final: {avg}\n"
+            content += "   / Estatus: APROBADO\n\n"
+
+        # 3. Pie de pagina
+        content += "=========================================\n"
+        content += "* Fin del reporte - Generado por SGA-DO *\n"
+
+        return content
+
+    def save_pending_certificates(self, graduates: list[Student]) -> None:
+        report_text = self._format_certificate_report(graduates)
+        with open(self._certificates_file, mode="w", encoding="utf-8") as file:
+            file.write(report_text)
