@@ -35,9 +35,9 @@ def main() -> None:
         if option == "1":
             """Lógica para Registrar Alumno"""
             # 1. Pedir datos básicos 👤
-            national_id = input("Ingrese la cédula: ").strip()
-            full_name = input("Ingrese el nombre completo: ").strip()
-            email = input("Ingrese el correo electrónico: ").strip()
+            national_id: str = input("Ingrese la cédula: ").strip()
+            full_name: str = input("Ingrese el nombre completo: ").strip()
+            email: str = input("Ingrese el correo electrónico: ").strip()
 
             # 2. Seleccionar tipo de programa 📚
             program = None
@@ -71,6 +71,27 @@ def main() -> None:
             # 4. Registrar el objeto estudiante
             sga.register_student(new_student)
             print("\n¡Estudiante registrado exitosamente! ✅")
+
+        elif option == "2":
+            # 1. Pedir datos básicos 👤
+            national_id: str = input("Ingrese la cédula: ").strip()
+            full_name: str = input("Ingrese el nombre completo: ").strip()
+            email: str = input("Ingrese el correo electrónico: ").strip()
+            specialty: str = input("Ingrese el nombre de su especialidad: ").strip()
+            assigned_subject: str = input("Ingrese el nombre de la materia: ").strip()
+
+            # 2. Crear el objeto profesor
+            new_professor = Professor(
+                national_id=national_id,
+                full_name=full_name,
+                email=email,
+                specialty=specialty,
+                assigned_subject=assigned_subject,
+            )
+
+            # . Registrar el objeto profesor
+            sga.register_professor(new_professor)
+            print("\n¡Profesor agregado exitosamente! ✅")
 
         elif option == "7":
             print("¡Gracias por usar el sistema SGA-DO!")
