@@ -11,13 +11,17 @@ from typing import Any
 # 2. Módulos del proyecto
 from entities import AcademicProgram, Bootcamp, Course, Diploma, Professor, Student
 
+# Garantiza la ruta absoluta a la raíz de /python basada en este archivo
+BASE_DIR = Path(__file__).resolve().parent
+
 
 class FileManager:
-    def __init__(self, data_dir: str = ".") -> None:
-        # Definimos las rutas usando objetos Path
-        self._students_file = Path(data_dir) / "alumnos.txt"
-        self._professors_file = Path(data_dir) / "profesores.txt"
-        self._certificates_file: Path = Path(data_dir) / "certificados_pendientes.txt"
+    def __init__(self, data_dir: Path | str = BASE_DIR) -> None:
+        # Definimos las rutas convirtiendo siempre a un objeto Path seguro
+        base_path = Path(data_dir)
+        self._students_file: Path = base_path / "alumnos.txt"
+        self._professors_file: Path = base_path / "profesores.txt"
+        self._certificates_file: Path = base_path / "certificados_pendientes.txt"
 
         # Nos aseguramos de que existan desde el primer instante
         self._ensure_files_exist()
@@ -29,9 +33,6 @@ class FileManager:
 
         if not self._professors_file.exists():
             self._professors_file.touch()
-
-        if not self._certificates_file.exists():
-            self._certificates_file.touch()
 
     def _create_program_instance(self, program_name: str) -> AcademicProgram:
         """Método interno para instanciar el programa académico correspondiente."""
