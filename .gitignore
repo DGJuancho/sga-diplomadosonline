@@ -70,3 +70,6 @@ coverage/
 # ░░ Archivos comprimidos
 *.zip
 *.tar.gz
+
+# ░░ Archivos txt generados por la app
+*.txt
