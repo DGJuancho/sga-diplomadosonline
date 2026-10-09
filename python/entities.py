@@ -14,9 +14,9 @@ class Person(ABC):
     """Clase base para representar a una persona en el sistema"""
 
     def __init__(self, national_id: str, full_name: str, email: str) -> None:
-        self._national_id = national_id
-        self._full_name = full_name
-        self._email = email
+        self._national_id: str = national_id.strip().upper()  # Normalización defensiva
+        self._full_name: str = full_name.strip()
+        self._email: str = email.strip().lower()
 
     @property
     def national_id(self) -> str:

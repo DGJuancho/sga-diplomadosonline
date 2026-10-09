@@ -35,7 +35,16 @@ def main() -> None:
         if option == "1":
             """Lógica para Registrar Alumno"""
             # 1. Pedir datos básicos 👤
-            national_id: str = input("Ingrese la cédula: ").strip()
+            national_id: str = input("Ingrese la cédula (Ej: V-101): ").strip().upper()
+
+            # Validación de duplicados 🛡️
+            if sga.find_person_by_id(national_id) is not None:
+                print(
+                    f"\n❌ Error: La cédula '{national_id}' ya se encuentra registrada en el sistema."
+                )
+                continue
+                # No te permite continuar el registro
+
             full_name: str = input("Ingrese el nombre completo: ").strip()
             email: str = input("Ingrese el correo electrónico: ").strip()
 
@@ -74,7 +83,16 @@ def main() -> None:
 
         elif option == "2":
             # 1. Pedir datos básicos 👤
-            national_id: str = input("Ingrese la cédula: ").strip()
+            national_id: str = input("Ingrese la cédula (Ej. V-101): ").strip().upper()
+
+            # Validación de duplicados 🛡️
+            if sga.find_person_by_id(national_id) is not None:
+                print(
+                    f"\n❌ Error: La cédula '{national_id}' ya se encuentra registrada en el sistema."
+                )
+                # No te permite continuar el registro
+                continue
+
             full_name: str = input("Ingrese el nombre completo: ").strip()
             email: str = input("Ingrese el correo electrónico: ").strip()
             specialty: str = input("Ingrese el nombre de su especialidad: ").strip()

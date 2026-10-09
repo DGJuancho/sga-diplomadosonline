@@ -12,7 +12,7 @@ Date: 08/2026
 from collections import deque
 
 # 2. Módulos del proyecto
-from entities import Professor, Student
+from entities import Person, Professor, Student
 from file_manager import FileManager
 
 
@@ -39,20 +39,36 @@ class AcademicManagementSystem:
         # Cola (Queue - FIFO) para la Opción 5: Generar Certificados
         self.pending_certificates: deque[Student] = deque()
 
+        # Carga inmediata de la data
+        self.load_initial_data()
+
     # --- Carga Inicial y Persistencia ---
     def load_initial_data(self) -> None:
         """Carga la información previa desde los archivos txt hacia la memoria RAM (EVAL-01)."""
 
-        # 1. Obtener las listas de estudiantes y profesores desde el FileManager
+        # 1. Obtener las listas de estudiantes y profesores desde el FileManager y poblar los diccionarios, indexados por Cédula/ID
         loaded_students: list[Student] = self.file_manager.read_students()
-        loaded_professors: list[Professor] = self.file_manager.read_professors()
-
-        # 2. Poblar los diccionarios, indexados por Cédula/ID
         for student in loaded_students:
-            self.students[student.national_id] = student
+            self.students[student.national_id.strip().upper()] = student
 
+        loaded_professors: list[Professor] = self.file_manager.read_professors()
         for professor in loaded_professors:
-            self.professors[professor.national_id] = professor
+            self.professors[professor.national_id.strip().upper()] = professor
+
+    # --- Validación de Identificación única para el sistema ---
+    def find_person_by_id(self, national_id: str) -> Person | None:
+        """Busca si existe un alumno o profesor con la cédula proporcionada."""
+        clean_id: str = national_id.strip().upper()
+
+        # Buscar en el diccionario de alumnos por la clave national_id
+        if clean_id in self.students:
+            return self.students[clean_id]
+
+        # Buscar en el diccionario de profesores por la clave national_id
+        if clean_id in self.professors:
+            return self.professors[clean_id]
+
+        return None
 
     # --- Reglas de Negocio / Flujos del Menú ---
     def register_student(self, student: Student) -> bool:
