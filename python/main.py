@@ -39,10 +39,7 @@ def main() -> None:
             full_name = input("Ingrese el nombre completo: ").strip()
             email = input("Ingrese el correo electrónico: ").strip()
 
-            # 2. Pedir el nombre del programa (ej: "Python Core") 📖
-            program_name = input("Ingrese el nombre de la materia/programa: ").strip()
-
-            # 3. Seleccionar tipo de programa 📚
+            # 2. Seleccionar tipo de programa 📚
             program = None
             while True:
                 print("\nSeleccione el tipo de programa:")
@@ -52,18 +49,18 @@ def main() -> None:
                 prog_option = input("Opción (1-3): ").strip()
 
                 if prog_option == "1":
-                    program = Course(program_name)
+                    program = Course()
                     break
                 elif prog_option == "2":
-                    program = Diploma(program_name)
+                    program = Diploma()
                     break
                 elif prog_option == "3":
-                    program = Bootcamp(program_name)
+                    program = Bootcamp()
                     break
                 else:
                     print("❌ Opción inválida. Debe seleccionar 1, 2 o 3.")
 
-            # 4. Crear el objeto estudiante
+            # 3. Crear el objeto estudiante
             new_student = Student(
                 national_id=national_id,
                 full_name=full_name,
@@ -71,7 +68,7 @@ def main() -> None:
                 program=program,
             )
 
-            # 5. Registrar el objeto estudiante
+            # 4. Registrar el objeto estudiante
             sga.register_student(new_student)
             print("\n¡Estudiante registrado exitosamente! ✅")
 

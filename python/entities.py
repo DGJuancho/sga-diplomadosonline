@@ -150,8 +150,8 @@ class AcademicProgram(ABC):
 class Course(AcademicProgram):
     """Modalidad Curso: Requiere un promedio mayor o igual a 10.0"""
 
-    def __init__(self, program_name: str) -> None:
-        super().__init__(program_name)
+    def __init__(self) -> None:
+        super().__init__(program_name="Curso")
 
     def is_approved(self, grades: list[float]) -> bool:
         if not grades:
@@ -163,8 +163,8 @@ class Course(AcademicProgram):
 class Diploma(AcademicProgram):
     """Modalidad Diplomado: Requiere un promedio mayor o igual a 14.0"""
 
-    def __init__(self, program_name: str) -> None:
-        super().__init__(program_name)
+    def __init__(self) -> None:
+        super().__init__(program_name="Diplomado")
 
     def is_approved(self, grades: list[float]) -> bool:
         if not grades:
@@ -176,8 +176,8 @@ class Diploma(AcademicProgram):
 class Bootcamp(AcademicProgram):
     """Modalidad Bootcamp: Ninguna nota individual debe ser menor a 14.0"""
 
-    def __init__(self, program_name: str) -> None:
-        super().__init__(program_name)
+    def __init__(self) -> None:
+        super().__init__(program_name="Bootcamp")
 
     def is_approved(self, grades: list[float]) -> bool:
         if not grades:

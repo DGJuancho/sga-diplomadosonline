@@ -37,11 +37,11 @@ class FileManager:
         """Método interno para instanciar el programa académico correspondiente."""
         clean_name = program_name.strip().lower()
         if clean_name == "curso":
-            return Course(program_name="Curso")
+            return Course()
         elif clean_name == "diplomado":
-            return Diploma(program_name="Diplomado")
+            return Diploma()
         elif clean_name == "bootcamp":
-            return Bootcamp(program_name="Bootcamp")
+            return Bootcamp()
         else:
             raise ValueError(
                 f"Tipo de programa académico no reconocido: {program_name}"
