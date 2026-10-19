@@ -67,7 +67,7 @@ class FileManager:
         try:
             grades: list[float] = [float(parts[4]), float(parts[5]), float(parts[6])]
         except ValueError:
-            grades: list[float] = [0.0, 0.0, 0.0]
+            grades: list[float] = []
 
         program_instance: AcademicProgram = self._create_program_instance(
             program_name=program_str
