@@ -93,6 +93,11 @@ class Student(Person):
         return self._program
 
     @property
+    def program_name(self) -> str:
+        """Retorna el nombre del programa académico asignado o un valor por defecto."""
+        return self.program.program_name if self.program else "Sin Programa"
+
+    @property
     def grades_list(self) -> list[float]:
         """Retorna la lista de notas del estudiante"""
         return self._grades_list
