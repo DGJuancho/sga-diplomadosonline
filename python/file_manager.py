@@ -63,9 +63,14 @@ class FileManager:
             parts[3],
         )
 
-        # Parseo explícito de calificaciones a float
         try:
-            grades: list[float] = [float(parts[4]), float(parts[5]), float(parts[6])]
+            # Parseo inteligente de calificaciones en _parse_student_line
+            raw_grades = [float(parts[4]), float(parts[5]), float(parts[6])]
+
+            # Filtramos los ceros que son puramente relleno de formato (si el alumno no tiene notas asignadas)
+            grades: list[float] = [
+                g for g in raw_grades if g > 0.0
+            ]  # (O ajustando según tu criterio de ceros de relleno)
         except ValueError:
             grades: list[float] = []
 
