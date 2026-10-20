@@ -167,6 +167,22 @@ def main() -> None:
                     )
                     continue
 
+        elif option == "4":
+            print("\n--- DESHACER ÚLTIMO REGISTRO DE NOTA (PILAS LIFO) ---")
+
+            # Desempaquetamos la tupla devuelta por el controlador
+            result: tuple[Student, float] | None = sga.undo_last_grade()
+
+            if result is None:
+                print(
+                    "\n❌ Error: El historial de notas está vacío. No hay acciones para deshacer."
+                )
+            else:
+                student, grade_removed = result
+                print(
+                    f"\n✅ Éxito: Se ha deshecho la última nota ({grade_removed}) registrada para el alumno: {student.full_name}."
+                )
+
         elif option == "6":
             print("\n==================================================")
             print("        SGA-DO: REPORTE GENERAL DE LA ACADEMIA     ")
