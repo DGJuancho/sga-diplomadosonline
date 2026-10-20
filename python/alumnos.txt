@@ -1,0 +1,5 @@
+V-101, Ana Silva, anasilva@gmail.com, Curso, 10, 10, 10
+V-202, Carlos Pérez, carlosperez@gmail.com, Diplomado, 14, 13, 14
+V-303, María Gómez, lagomezma@gmail.com, Bootcamp, 20, 20, 12
+V-404, Luis Rojas, rojasluis@hotmail.com, Bootcamp, 14, 15, 14
+V-505, Pedro Prueba, pepeprueba@tucorreo.com, Diplomado, 15, 15, 13

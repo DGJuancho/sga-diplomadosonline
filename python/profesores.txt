@@ -1,0 +1,5 @@
+P-505, Dr. Pedro Infante, pepe@correo.com, Backend, Node.js
+P-666, Ing. Sofía Vergara, verga@yahoo.com, Frontend, Javascript
+P-696, Penélope Cruz, penecruz@email.com, Backend, C++ y Algoritmos
+P-669, Pablo Escobar, lamerma@email.com, Finanzas, Compra & Venta
+P-999, Pepito Pérez, pepito@correo.com, SQL, Postgres
