@@ -183,6 +183,21 @@ def main() -> None:
                     f"\n✅ Éxito: Se ha deshecho la última nota ({grade_removed}) registrada para el alumno: {student.full_name}."
                 )
 
+        elif option == "5":
+            print("\n--- GENERAR COLA DE CERTIFICADOS (FIFO) ---")
+
+            # Invocamos la función del controlador que procesa la cola y genera el archivo de salida
+            success: list[Student] = sga.generate_certificate_queue()
+
+            if success:
+                print(
+                    "\n✅ Éxito: Se ha generado el archivo 'certificados_pendientes.txt'"
+                )
+            else:
+                print(
+                    "\n⚠️ Aviso: No se encontraron estudiantes aprobados para generar certificados en este momento."
+                )
+
         elif option == "6":
             print("\n==================================================")
             print("        SGA-DO: REPORTE GENERAL DE LA ACADEMIA     ")
