@@ -1,25 +1,39 @@
 # 📑 Plan de Acción y Alcance del MVP **Sistema de Gestión Académica (SGA-DO)**
 
-**Autor:** Juan Carlos V. Núñez T.  
-**Fecha:** Julio 2026  
-**Rol:** Desarrollador Backend Core  
+**Autor:** Juan Carlos V. Núñez T.
+**Diplomado:** Programación - Diplomados Online
 **Versión:** v1.0.0
+**Estado:** MVP Backend Core en Python (Completado y Listo para QA de Facilitador)
 
 ---
 
 ## 🎯 Alcance del Producto Mínimo Viable (MVP)
 
-Para mitigar la situación planteada, se decide desarrollar un Sistema de Gestión Académica (SGA-DO) propio que permita solventar la problemática presentada con relación a los datos, bajo el siguiente plan:
+Para dar solución a la crisis operativa en la gestión de datos de la academia, se diseñó e implementó un motor core en consola bajo los principios de la Programación Orientada a Objetos (POO), integrando herencia, polimorfismo, estructuras de datos avanzadas (Pilas LIFO y Colas FIFO) y persistencia segura en archivos planos (`.txt`).
 
-1. Revisión de los requerimientos funcionales del sistema.
-2. Crear un repositorio público con la estructura de carpetas requeridas para mantener la organización de los archivos del sistema.
-3. Elaborar un diagrama de clases estableciendo una estructura jerárquica con herencia y polimorfismo que permita que el diseño del software se mantenga limpio y sea escalable.
-4. Desarrollo de las funciones y métodos asociados a las clases establecidas, apegados a los requerimientos funcionales del sistema.
-5. Desarrollo del menú, manteniendo la premisa de la ejecución en bucle hasta que el usuario explícitamente decida el cierre del mismo.
-6. Generar data semilla que será cargada al sistema.
-7. Crear prototipo funcional en Python.
-8. Realizar protocolo de prueba QA para garantizar el cumplimiento de los requerimientos y necesidades del sistema.
-9. Replicar el sistema bajo los otros dos lenguajes de programación (Java / C++) cumpliendo con las reglas de cada uno de los entornos y ejecución de los mismos protocolos de prueba QA.
-10. Informe ejecutivo.
+El plan de trabajo ejecutado comprende:
 
-...
+1. Análisis de requerimientos funcionales y diseño de la arquitectura.
+2. Configuración inicial del repositorio público y control de versiones con Git/GitHub.
+3. Modelado de clases jerárquicas (Persona, Alumno, Profesor y Programas Académicos con reglas polimórficas).
+4. Desarrollo del motor funcional en Python con bucle interactivo de consola.
+5. Carga de data semilla oficial y pruebas unitarias (Casos de Prueba CP-01, CP-02 y CP-03).
+6. **Prototipo funcional en Python completado y listo para los protocolos de prueba por parte del facilitador.**
+
+---
+
+## 🏛️ Arquitectura y Reglas de Negocio (EVAL-02)
+
+- **Jerarquía de Personas:** Clases base `Persona` y derivadas `Alumno` y `Profesor`.
+- **Evaluación Polimórfica (`evaluarAprobacion()`):**
+  - **Curso:** Promedio $\ge 10.0$.
+  - **Diplomado:** Promedio $\ge 14.0$.
+  - **Bootcamp:** Exige estrictamente 3 notas completas y ninguna menor a $14.0$.
+
+---
+
+## 📊 Estructuras de Datos y Persistencia
+
+- **Opción 4 (Pila / LIFO):** Historial dinámico para deshacer el último registro de notas erróneas.
+- **Opción 5 (Cola / FIFO):** Procesamiento secuencial para la exportación del reporte a `certificados_pendientes.txt`.
+- **Persistencia Crítica (EVAL-01):** Escritura inmediata en disco (`alumnos.txt`, `profesores.txt`) para prevenir pérdida de datos ante cierres inesperados.
