@@ -106,7 +106,7 @@ class Student(Person):
         """Calcula y retorna el promedio actual de calificaciones del estudiante."""
         if not self._grades_list:
             return 0.0
-        return sum(self._grades_list) / len(self._grades_list)
+        return sum(self._grades_list) / 3.0
 
     def is_approved(self) -> bool:
         """La función delega al programa académico el cálculo correspondiente"""
@@ -161,7 +161,7 @@ class Course(AcademicProgram):
     def is_approved(self, grades: list[float]) -> bool:
         if not grades:
             return False
-        average: float = sum(grades) / len(grades)
+        average: float = sum(grades) / 3.0
         return average >= 10.0
 
 
@@ -174,7 +174,7 @@ class Diploma(AcademicProgram):
     def is_approved(self, grades: list[float]) -> bool:
         if not grades:
             return False
-        average: float = sum(grades) / len(grades)
+        average: float = sum(grades) / 3.0
         return average >= 14
 
 
@@ -185,7 +185,7 @@ class Bootcamp(AcademicProgram):
         super().__init__(program_name="Bootcamp")
 
     def is_approved(self, grades: list[float]) -> bool:
-        if not grades:
+        if len(grades) < 3:
             return False
         # Si alguna nota es estrictamente menor a 14, queda reprobado
         return all(grade >= 14.0 for grade in grades)
